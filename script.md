@@ -11,7 +11,7 @@
 stringify boxes into a string, we can make a generic version which keeps the original type of the object so when we parse it, it has the correct type.
 
 ```ts
-// add Stringified<FeatureState>
+// add : Stringified<FeatureState>
 const parsed = JSON.parse(stringified)
 
 parsed.enabled
