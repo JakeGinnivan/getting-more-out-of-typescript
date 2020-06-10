@@ -15,13 +15,15 @@ export function toRecord<Keys extends string, InputValue, Value>(
     let features: Record<Keys, Value> = {} as any
     if (Array.isArray(featuresOptions)) {
         features = featuresOptions.reduce((acc, feature) => {
-            acc[feature as any] = { enabled: true }
+            ;(acc as any)[feature as any] = { enabled: true }
             return acc
         }, features)
     } else {
-        Object.keys(featuresOptions).map(key => {
+        Object.keys(featuresOptions).map((key) => {
             if (featuresOptions.hasOwnProperty(key)) {
-                features[key] = mapValue ? mapValue(featuresOptions[key]) : featuresOptions[key]
+                ;(features as any)[key] = mapValue
+                    ? mapValue((featuresOptions as any)[key])
+                    : (featuresOptions as any)[key]
             }
         })
     }
